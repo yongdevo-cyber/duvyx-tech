@@ -1,0 +1,6 @@
+/* Inter e Inter Display (SIL Open Font License) — subconjunto latino, servidas localmente */
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/inter-400.woff) format('woff')}
+@font-face{font-family:Inter;font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/inter-500.woff) format('woff')}
+@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:swap;src:url(../fonts/inter-600.woff) format('woff')}
+@font-face{font-family:'Inter Display';font-style:normal;font-weight:500;font-display:swap;src:url(../fonts/inter-display-500.woff) format('woff')}
+@font-face{font-family:'Inter Display';font-style:normal;font-weight:600;font-display:swap;src:url(../fonts/inter-display-600.woff) format('woff')}

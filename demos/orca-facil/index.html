@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Orça Fácil — demonstração | Duvyx Tech</title>
+<meta name="description" content="Projeto demonstrativo: gerador de orçamentos no navegador.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../assets/favicon/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<link rel="stylesheet" href="../demo-bar.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-bar" role="note"><span><strong>Projeto demonstrativo</strong> · empresa e dados fictícios · tudo fica salvo só neste navegador</span><a href="../../portfolio/orca-facil.html">Voltar ao estudo de caso</a></div>
+
+<header class="top">
+  <div class="brand"><span class="logo" aria-hidden="true">OF</span><div><strong>Orça Fácil</strong><small>Orçamentos em minutos</small></div></div>
+  <div class="top-actions">
+    <button type="button" class="btn ghost" id="novo">Novo orçamento</button>
+    <button type="button" class="btn" id="imprimir">Imprimir / PDF</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="editor" aria-labelledby="t-editor">
+    <h1 id="t-editor">Orçamento <span id="numero"></span></h1>
+    <div class="grid2">
+      <label>Cliente<input id="cliente" autocomplete="off" placeholder="Nome do cliente"></label>
+      <label>Contato<input id="contato" autocomplete="off" placeholder="E-mail ou telefone"></label>
+      <label>Validade<input id="validade" type="date"></label>
+      <label>Status
+        <select id="status"><option value="rascunho">Rascunho</option><option value="enviado">Enviado</option><option value="aprovado">Aprovado</option><option value="recusado">Recusado</option></select>
+      </label>
+    </div>
+
+    <h2>Itens</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Descrição</th><th scope="col" class="n">Qtd.</th><th scope="col" class="n">Valor unit. (R$)</th><th scope="col" class="n">Subtotal</th><th scope="col"><span class="sr">Ações</span></th></tr></thead>
+        <tbody id="itens"></tbody>
+      </table>
+    </div>
+    <button type="button" class="btn ghost small" id="add-item">+ Adicionar item</button>
+
+    <div class="grid2 bottom">
+      <label>Observações<textarea id="obs" rows="3" placeholder="Condições de pagamento, prazo de entrega…"></textarea></label>
+      <div class="totais">
+        <label class="inline">Desconto (%)<input id="desconto" type="number" min="0" max="100" step="0.5" value="0"></label>
+        <dl>
+          <div><dt>Subtotal</dt><dd id="t-sub">R$ 0,00</dd></div>
+          <div><dt>Desconto</dt><dd id="t-desc">R$ 0,00</dd></div>
+          <div class="total"><dt>Total</dt><dd id="t-total">R$ 0,00</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="save-row">
+      <button type="button" class="btn" id="salvar">Salvar orçamento</button>
+      <p id="msg" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <aside class="lista" aria-labelledby="t-lista">
+    <div class="lista-head"><h2 id="t-lista">Salvos</h2><span id="contagem"></span></div>
+    <label class="sr" for="busca">Buscar orçamento</label>
+    <input id="busca" type="search" placeholder="Buscar por cliente">
+    <ul id="salvos"></ul>
+    <p class="vazio" id="vazio">Nenhum orçamento salvo ainda. Preencha ao lado e clique em “Salvar orçamento”.</p>
+  </aside>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

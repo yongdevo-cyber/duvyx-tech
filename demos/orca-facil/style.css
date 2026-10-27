@@ -1,0 +1,55 @@
+:root{--bg:#F4F6F2;--ink:#1D2A24;--muted:#5D6B63;--line:#D9DFD6;--card:#fff;--acc:#2E7D5B;--acc-ink:#fff;--warn:#B54708}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.5 Inter,system-ui,sans-serif}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 24px;background:var(--card);border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:12px;align-items:center}.brand small{display:block;color:var(--muted);font-size:12px}
+.logo{width:40px;height:40px;border-radius:10px;background:var(--acc);color:#fff;display:grid;place-items:center;font-weight:700}
+.top-actions{display:flex;gap:8px}
+.btn{border:0;border-radius:10px;background:var(--acc);color:var(--acc-ink);font:600 14px Inter,sans-serif;padding:11px 16px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc);box-shadow:inset 0 0 0 1.5px var(--acc)}
+.btn.small{padding:8px 12px;font-size:13px}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.icon-btn:focus-visible{outline:3px solid #8CC7A9;outline-offset:2px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;padding:24px;max-width:1200px;margin:0 auto}
+.editor,.lista{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px}
+h1{margin:0 0 18px;font-size:24px}h2{font-size:16px;margin:24px 0 10px}
+#numero{color:var(--muted);font-weight:500}
+label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--muted)}
+input,select,textarea{font:400 15px Inter,sans-serif;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;width:100%}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.table-wrap{overflow-x:auto;position:relative}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+td{padding:6px;border-bottom:1px solid var(--line)}
+.n{text-align:right}td.n{font-variant-numeric:tabular-nums}
+td input{padding:8px}
+.icon-btn{border:0;background:none;color:var(--warn);font-size:18px;cursor:pointer;padding:6px 10px;border-radius:8px}
+.bottom{margin-top:20px;align-items:start}
+.totais{display:flex;flex-direction:column;gap:10px}
+.inline{max-width:180px}
+dl{margin:0}dl div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--line)}
+dt{color:var(--muted)}dd{margin:0;font-variant-numeric:tabular-nums}
+.total dd,.total dt{font-weight:700;font-size:18px;color:var(--ink)}
+.save-row{display:flex;gap:16px;align-items:center;margin-top:20px;flex-wrap:wrap}
+#msg{margin:0;color:var(--acc);font-weight:600}#msg.err{color:var(--warn)}
+.lista-head{display:flex;justify-content:space-between;align-items:baseline}
+.lista h2{margin-top:0}
+#salvos{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+#salvos li{border:1px solid var(--line);border-radius:12px;padding:12px}
+#salvos li.ativo{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc)}
+.li-top{display:flex;justify-content:space-between;gap:8px}
+.li-top button{all:unset;cursor:pointer;font-weight:600}
+.li-top button:focus-visible{outline:3px solid #8CC7A9}
+.tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:99px;background:#EEF2EC;color:var(--muted)}
+.tag.aprovado{background:#DDF3E7;color:#1E6B49}.tag.enviado{background:#E3ECFA;color:#2A4E8C}.tag.recusado{background:#FBE7DC;color:#9A3B0B}
+.li-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-top:4px}
+.li-actions{display:flex;gap:10px;margin-top:8px}
+.li-actions button{border:0;background:none;color:var(--acc);font:600 12px Inter,sans-serif;cursor:pointer;padding:0}
+.li-actions button.del{color:var(--warn)}
+.vazio{color:var(--muted);font-size:14px}
+@media (max-width:860px){.layout{grid-template-columns:minmax(0,1fr);padding:14px}.grid2{grid-template-columns:1fr}}
+@media print{
+  .demo-bar,.top-actions,.lista,#add-item,.save-row,.icon-btn,th:last-child,td:last-child{display:none!important}
+  body{background:#fff}.layout{display:block;padding:0}.editor{border:0;padding:0}
+  input,select,textarea{border:0;padding:2px 0;appearance:none}
+}

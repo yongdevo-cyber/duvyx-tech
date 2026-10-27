@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pedal Firme — demonstração de site para negócio local | Duvyx Tech</title>
+<meta name="description" content="Projeto demonstrativo: site para uma oficina de bicicletas fictícia.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../assets/favicon/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<link rel="stylesheet" href="../demo-bar.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-bar" role="note"><span><strong>Projeto demonstrativo</strong> · negócio, preços e horários fictícios</span><a href="../../portfolio/pedal-firme.html">Voltar ao estudo de caso</a></div>
+
+<header class="nav">
+  <a class="brand" href="#inicio"><span aria-hidden="true">◎</span> Pedal Firme</a>
+  <nav aria-label="Seções"><a href="#servicos">Serviços</a><a href="#horarios">Horários</a><a href="#contato">Contato</a></nav>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <p class="eyebrow">Oficina de bicicletas</p>
+    <h1>Sua bike revisada, ajustada e pronta para rodar.</h1>
+    <p class="lead">Revisão, troca de peças e regulagem com atendimento por ordem de chegada ou horário marcado.</p>
+    <p class="status" id="status" aria-live="polite">Verificando horário…</p>
+    <a class="btn" href="#contato">Montar mensagem de atendimento</a>
+  </section>
+
+  <section id="servicos" aria-labelledby="t-serv">
+    <h2 id="t-serv">Serviços</h2>
+    <p class="note">Valores de exemplo, apenas para a demonstração.</p>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="horarios" aria-labelledby="t-hor">
+    <h2 id="t-hor">Horários</h2>
+    <table class="horas"><tbody id="horas"></tbody></table>
+  </section>
+
+  <section id="contato" aria-labelledby="t-cont" class="contato">
+    <h2 id="t-cont">Monte sua mensagem</h2>
+    <p>Escolha o serviço e veja a mensagem pronta. No site de um cliente real, o botão abriria o WhatsApp da oficina com este texto.</p>
+    <form id="form" novalidate>
+      <label>Seu nome<input id="nome" autocomplete="name" required></label>
+      <label>Serviço<select id="servico"></select></label>
+      <label>Melhor dia<select id="dia"></select></label>
+      <label class="full">Detalhes (opcional)<textarea id="det" rows="3" placeholder="Ex.: o freio traseiro está fazendo barulho"></textarea></label>
+      <div class="full preview"><span>Prévia da mensagem</span><output id="preview" for="nome servico dia det"></output></div>
+      <div class="full actions">
+        <button type="button" class="btn" id="copiar">Copiar mensagem</button>
+        <button type="button" class="btn ghost" id="whats">Abrir no WhatsApp</button>
+      </div>
+      <p class="full" id="msg" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+<footer class="foot">Pedal Firme é um negócio fictício criado pela Duvyx Tech para demonstração.</footer>
+<script src="app.js"></script>
+</body>
+</html>

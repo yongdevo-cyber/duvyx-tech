@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /demos/
+Sitemap: https://yongdevo-cyber.github.io/duvyx-tech/sitemap.xml

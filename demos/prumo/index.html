@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Prumo · Manutenção e ocorrências | Duvyx Tech</title>
+<meta name="description" content="Sistema de gestão de manutenção e ocorrências: abertura de chamados, prioridades, prazos e plano de preventivas.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../assets/favicon/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<link rel="stylesheet" href="../demo-bar.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-bar" role="note"><span><strong>Demonstração</strong> · dados de exemplo, salvos só neste navegador</span><a href="../../portfolio/prumo.html">Voltar ao projeto</a></div>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><span class="logo" aria-hidden="true">P</span><div><strong>Prumo</strong><small>Manutenção e ocorrências</small></div></div>
+    <nav class="tabs" aria-label="Seções">
+      <button type="button" class="tab" data-tab="ocorrencias" aria-pressed="true">Ocorrências</button>
+      <button type="button" class="tab" data-tab="preventivas" aria-pressed="false">Preventivas</button>
+    </nav>
+    <button type="button" class="reset" id="reset">Restaurar dados de exemplo</button>
+  </aside>
+  <main class="main">
+    <header class="top">
+      <div><h1 id="titulo">Ocorrências</h1><p class="sub" id="hoje"></p></div>
+      <button type="button" class="btn" id="nova">+ Nova ocorrência</button>
+    </header>
+    <section class="kpis" aria-label="Resumo">
+      <div class="kpi"><span>Abertas</span><strong id="k-abertas">0</strong></div>
+      <div class="kpi"><span>Em andamento</span><strong id="k-andamento">0</strong></div>
+      <div class="kpi warn"><span>Fora do prazo</span><strong id="k-atrasadas">0</strong></div>
+      <div class="kpi ok"><span>Concluídas (30 dias)</span><strong id="k-concluidas">0</strong></div>
+    </section>
+
+    <section id="painel-ocorrencias">
+      <div class="filters">
+        <label class="sr" for="busca">Buscar</label><input id="busca" type="search" placeholder="Buscar equipamento, setor ou descrição">
+        <label class="sr" for="f-status">Status</label>
+        <select id="f-status"><option value="">Todos os status</option><option value="aberta">Abertas</option><option value="andamento">Em andamento</option><option value="concluida">Concluídas</option></select>
+        <label class="sr" for="f-prio">Prioridade</label>
+        <select id="f-prio"><option value="">Todas as prioridades</option><option value="alta">Alta</option><option value="media">Média</option><option value="baixa">Baixa</option></select>
+      </div>
+      <ul class="list" id="lista" aria-live="polite"></ul>
+      <p class="empty" id="vazio" hidden>Nenhuma ocorrência com esses filtros.</p>
+    </section>
+
+    <section id="painel-preventivas" hidden>
+      <p class="hint">Manutenções programadas por equipamento. Ao registrar a execução, a próxima data é recalculada pela frequência.</p>
+      <div class="table-wrap"><table class="prev">
+        <thead><tr><th scope="col">Equipamento</th><th scope="col">Setor</th><th scope="col">Frequência</th><th scope="col">Próxima</th><th scope="col"><span class="sr">Ação</span></th></tr></thead>
+        <tbody id="prev-body"></tbody>
+      </table></div>
+    </section>
+  </main>
+</div>
+
+<dialog id="dlg" aria-labelledby="dlg-t">
+  <form id="form" method="dialog" novalidate>
+    <h2 id="dlg-t">Nova ocorrência</h2>
+    <label>Equipamento ou local<input name="equip" required autocomplete="off" placeholder="Ex.: Compressor 2"></label>
+    <div class="row">
+      <label>Setor<select name="setor"><option>Produção</option><option>Utilidades</option><option>Expedição</option><option>Administrativo</option><option>Predial</option></select></label>
+      <label>Prioridade<select name="prio"><option value="alta">Alta (24 h)</option><option value="media" selected>Média (3 dias)</option><option value="baixa">Baixa (7 dias)</option></select></label>
+    </div>
+    <label>O que aconteceu<textarea name="desc" required rows="3" placeholder="Descreva o problema"></textarea></label>
+    <label>Responsável<select name="resp"><option>Equipe elétrica</option><option>Equipe mecânica</option><option>Equipe predial</option><option>Terceirizado</option></select></label>
+    <p class="err" id="erro" role="alert"></p>
+    <div class="actions"><button type="button" class="btn ghost" id="cancelar">Cancelar</button><button type="submit" class="btn" id="salvar" value="ok">Abrir ocorrência</button></div>
+  </form>
+</dialog>
+<script src="app.js"></script>
+</body>
+</html>

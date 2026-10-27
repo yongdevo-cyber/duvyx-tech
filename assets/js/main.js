@@ -4,6 +4,9 @@
   const cfgEl = document.getElementById('duvyx-config');
   const CFG = cfgEl ? JSON.parse(cfgEl.textContent) : {};
 
+  document.documentElement.classList.add('js');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
   /* ---------- Cabeçalho ---------- */
   const header = document.querySelector('.site-header');
   const onScroll = () => header && header.classList.toggle('scrolled', window.scrollY > 8);
@@ -20,8 +23,51 @@
     toggle.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
     nav.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && nav.classList.contains('open')) { setOpen(false); toggle.focus(); } });
-    window.matchMedia('(min-width: 901px)').addEventListener('change', (m) => { if (m.matches) setOpen(false); });
+    document.addEventListener('click', (e) => { if (nav.classList.contains('open') && !e.target.closest('.header-bar')) setOpen(false); });
+    window.matchMedia('(min-width: 861px)').addEventListener('change', (m) => { if (m.matches) setOpen(false); });
   }
+
+  /* ---------- Revelação ao rolar (conteúdo continua visível sem JS ou com movimento reduzido) ---------- */
+  const reveals = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window && !reduce.matches) {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }),
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    reveals.forEach((el, i) => { el.style.transitionDelay = `${Math.min(i % 4, 3) * 70}ms`; io.observe(el); });
+  } else reveals.forEach((el) => el.classList.add('in'));
+
+  /* ---------- Barra fixa de contato no celular ---------- */
+  // aparece depois que o botão principal da primeira dobra sai da tela; some quando a seção de contato ou o rodapé aparecem
+  const dock = document.querySelector('[data-dock]');
+  const heroCta = document.querySelector('.hero [data-cta], .hero .btn-primary, .page-hero .btn-row');
+  if (dock && 'IntersectionObserver' in window) {
+    dock.hidden = false; let pastHero = !heroCta; let nearEnd = false;
+    const apply = () => {
+      const show = pastHero && !nearEnd;
+      dock.classList.toggle('show', show);
+      dock.inert = !show; dock.setAttribute('aria-hidden', String(!show));
+      document.body.style.setProperty('--dock-h', show && window.innerWidth <= 860 ? `${dock.offsetHeight}px` : '0px');
+    };
+    if (heroCta) new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.top < 0; apply(); }).observe(heroCta);
+    const ends = document.querySelectorAll('#contato, .site-footer'); const vis = new Set();
+    const endIo = new IntersectionObserver((entries) => { entries.forEach((e) => (e.isIntersecting ? vis.add(e.target) : vis.delete(e.target))); nearEnd = vis.size > 0; apply(); });
+    ends.forEach((el) => endIo.observe(el));
+    window.addEventListener('resize', apply, { passive: true }); apply();
+  }
+
+  /* ---------- Profundidade das telas da primeira dobra (só mouse; nada em toque ou movimento reduzido) ---------- */
+  const stage = document.querySelector('.stage'); const arc = stage && stage.querySelector('.arc');
+  if (arc && window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduce.matches) {
+    let raf = 0;
+    stage.closest('.hero').addEventListener('pointermove', (e) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => { raf = 0;
+        const x = e.clientX / window.innerWidth - 0.5, y = e.clientY / window.innerHeight - 0.5;
+        arc.style.setProperty('--ry', `${(x * 6).toFixed(2)}deg`); arc.style.setProperty('--rx', `${(-y * 3).toFixed(2)}deg`); });
+    });
+    stage.closest('.hero').addEventListener('pointerleave', () => { arc.style.setProperty('--ry', '0deg'); arc.style.setProperty('--rx', '0deg'); });
+  }
+
+  document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
 
   /* ---------- Formulário de orçamento ---------- */
   const form = document.getElementById('form-orcamento');

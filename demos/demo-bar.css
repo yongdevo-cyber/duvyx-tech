@@ -4,3 +4,4 @@
 .demo-bar strong{color:#7CA2FF;font-weight:600}
 .demo-bar a{color:#EDF1F7;text-decoration:underline;text-underline-offset:3px}
 .demo-bar a:focus-visible{outline:2px solid #7CA2FF;outline-offset:2px}
+@media (max-width:860px){.demo-bar a{display:inline-flex;align-items:center;min-height:44px}}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Evolua · Gestão de clínica de reabilitação | Duvyx Tech</title>
+<meta name="description" content="Sistema de gestão para clínica de reabilitação: agenda de sessões, presença, pacientes e evolução clínica.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../assets/favicon/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<link rel="stylesheet" href="../demo-bar.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-bar" role="note"><span><strong>Demonstração</strong> · dados de exemplo, salvos só neste navegador</span><a href="../../portfolio/evolua.html">Voltar ao projeto</a></div>
+<header class="top">
+  <div class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 16c3-1 4-6 8-6s5 5 8 4" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span><div><strong>Evolua</strong><small>Clínica de reabilitação</small></div></div>
+  <nav class="tabs" aria-label="Seções"><button type="button" class="tab" data-tab="agenda" aria-pressed="true">Agenda</button><button type="button" class="tab" data-tab="pacientes" aria-pressed="false">Pacientes</button></nav>
+</header>
+<main class="main">
+  <section id="v-agenda">
+    <div class="head"><div><h1>Agenda de hoje</h1><p class="sub" id="hoje"></p></div>
+      <label class="sr" for="f-prof">Profissional</label><select id="f-prof"><option value="">Todos os profissionais</option></select></div>
+    <div class="stats"><div><span>Sessões</span><strong id="s-total">0</strong></div><div><span>Presentes</span><strong id="s-pres">0</strong></div><div><span>Faltas</span><strong id="s-falta">0</strong></div><div><span>A confirmar</span><strong id="s-pend">0</strong></div></div>
+    <ol class="agenda" id="agenda"></ol>
+  </section>
+  <section id="v-pacientes" hidden>
+    <div class="split">
+      <div class="col-list">
+        <h1>Pacientes</h1>
+        <label class="sr" for="busca">Buscar paciente</label><input id="busca" type="search" placeholder="Buscar por nome">
+        <ul class="pacs" id="pacs"></ul>
+      </div>
+      <article class="ficha" id="ficha" aria-live="polite"></article>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
